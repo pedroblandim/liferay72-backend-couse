@@ -19,8 +19,17 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
 import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.service.BaseService;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.Isolation;
+import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.training.gradebook.model.Assignment;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import org.osgi.annotation.versioning.ProviderType;
 
@@ -47,6 +56,28 @@ public interface AssignmentService extends BaseService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link AssignmentServiceUtil} to access the assignment remote service. Add custom service methods to <code>com.liferay.training.gradebook.service.impl.AssignmentServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public Assignment addAssignment(
+			long groupId, Map<Locale, String> titleMap,
+			Map<Locale, String> descriptionMap, Date dueDate,
+			ServiceContext serviceContext)
+		throws PortalException;
+
+	public Assignment deleteAssignment(long assignmentId)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Assignment getAssignment(long assignmentId) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Assignment> getAssignmentByGroupId(long groupId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Assignment> getAssignmentByKeywords(
+		long groupId, String keywords, int start, int end,
+		OrderByComparator<Assignment> orderByComparator);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public long getAssignmentCountByKeywords(long groupId, String keywords);
 
 	/**
 	 * Returns the OSGi service identifier.
@@ -54,5 +85,11 @@ public interface AssignmentService extends BaseService {
 	 * @return the OSGi service identifier
 	 */
 	public String getOSGiServiceIdentifier();
+
+	public Assignment updateAssignment(
+			long assignmentId, Map<Locale, String> titleMap,
+			Map<Locale, String> descriptionMap, Date dueDate,
+			ServiceContext serviceContext)
+		throws PortalException;
 
 }
