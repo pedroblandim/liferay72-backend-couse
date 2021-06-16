@@ -1,9 +1,10 @@
 <%-- Generate assignment view URL --%>
 
+<%@page import="com.liferay.training.gradebook.web.constants.MVCCommandNames"%>
 <%@page import="com.liferay.portal.kernel.util.HtmlUtil"%>
 <%@page import="com.liferay.portal.kernel.language.LanguageUtil"%>
 <portlet:renderURL var="viewAssignmentURL">
-	<portlet:param value="<%=MVCCommandNames.VIEW_ASSIGNMENT %>" />
+	<portlet:param name="mvcRenderCommandName" value="<%=MVCCommandNames.VIEW_ASSIGNMENT %>" />
 	<portlet:param name="redirect" value="${currentURL}" />
 	<portlet:param name="assignmentId" value="${entry.assignmentId}" />
 </portlet:renderURL>
@@ -13,7 +14,7 @@
  	<%-- Descriptive (list) view --%>
  	
  	<c:when
- 		test='${assignmentsManagementToolbarDisplayContext.getDisplayStyle().equals("descriptive")'>
+ 		test='${assignmentsManagementToolbarDisplayContext.getDisplayStyle().equals("descriptive")}'>
  		
  		<%-- User --%>
  	
@@ -22,7 +23,7 @@
  			userId="<%= entry.getUserId() %>"
  		/>
  		
- 		<liferay-ui:search-container-columns-text colspan="<%= 2 %>">
+ 		<liferay-ui:search-container-column-text colspan="<%= 2 %>">
  	
  			<%
  				String modifiedDateDescription = 
@@ -43,7 +44,7 @@
  				</aui:a>
  			</h4>
 
- 		</liferay-ui:search-container-columns-text>
+ 		</liferay-ui:search-container-column-text >
  		
  		<liferay-ui:search-container-column-jsp
  			path="/assignment/entry_actions.jsp" />
@@ -109,7 +110,7 @@
  		
  		<liferay-ui:search-container-column-jsp
  			name="actions"
- 			userId="/assignment/entry_actions.jsp"
+ 			path="/assignment/entry_actions.jsp"
  		/>
  	</c:otherwise>
  </c:choose>

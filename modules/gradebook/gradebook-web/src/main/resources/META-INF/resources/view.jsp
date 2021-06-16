@@ -7,7 +7,7 @@
 	
 	<clay:management-toolbar
 		disabled="${assignmentCount eq 0}"
-		displayContext="${assignmentManagementToolbarDisplayContext}"
+		displayContext="${assignmentsManagementToolbarDisplayContext}"
 		itemsTotal="${assignmentCount}"
 		searchContainerId="assignmentEntries"
 		selectable="false"
@@ -18,8 +18,8 @@
 	<liferay-ui:search-container
 		emptyResultsMessage="no-assignments"
 		id="assignmentEntries"
-		iteratorURL="${assignmentCount}"
-		total=${assignmentCount}">
+		iteratorURL="${portletURL}"
+		total="${assignmentCount}">
 		
 		<liferay-ui:search-container-results results="${assignments}" />
 		
@@ -33,7 +33,7 @@
 		
 		<%-- Iterator / Paging --%>
 		<liferay-ui:search-iterator
-			displayStyle="${assignmentsManagementToolbarDisplayContext.getDisplayContext()}"
+			displayStyle="${assignmentsManagementToolbarDisplayContext.getDisplayStyle()}"
 			markupView="lexicon"
 		/>
 	</liferay-ui:search-container>
