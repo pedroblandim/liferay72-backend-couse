@@ -18,7 +18,7 @@
 <%@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState"%>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil"%>
 <%@ page import="com.liferay.training.gradebook.model.Assignment"%>
-<%--<%@ page import="com.liferay.training.gradebook.web.constants.MVCCommandNames"%> --%>
+<%@ page import="com.liferay.training.gradebook.web.constants.MVCCommandNames"%>
 
 <liferay-theme:defineObjects />
 
