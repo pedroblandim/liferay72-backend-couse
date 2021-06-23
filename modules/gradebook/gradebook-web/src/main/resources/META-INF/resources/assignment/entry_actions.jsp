@@ -28,7 +28,7 @@
 	
 	<%-- Delete action --%>
 
-	<portlet:actionURL name="mvcRenderCommandName" var="deleteAssignmentURL">
+	<portlet:actionURL name="<%=MVCCommandNames.DELETE_ASSIGNMENT%>" var="deleteAssignmentURL">
 		<portlet:param name="redirect" value="${currentURL}" />
 		<portlet:param name="assignmentId" value="${assignment.assignmentId}" />
 	</portlet:actionURL>
