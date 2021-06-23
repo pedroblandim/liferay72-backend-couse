@@ -65,18 +65,7 @@ public class AssignmentsManagementToolbarDisplayContext
 							"redirect", currentURLObj.toString());
 						dropdownItem.setLabel(
 							LanguageUtil.get(request, "add-assignment"));
-					});
-
-				// testing
-				addDropdownItem(
-						dropdownItem -> {
-							dropdownItem.setHref(
-								liferayPortletResponse.createRenderURL(),
-								"mvcRenderCommandName", MVCCommandNames.EDIT_ASSIGNMENT,
-								"redirect", currentURLObj.toString());
-							dropdownItem.setLabel(
-								LanguageUtil.get(request, "add-assignment2"));
-						});
+				});
 			}
 		};
 	}
