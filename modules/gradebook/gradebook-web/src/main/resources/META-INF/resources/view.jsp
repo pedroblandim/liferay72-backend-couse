@@ -1,4 +1,18 @@
-<%@ include file="/init.jsp" %>
+<%@ include file="./init.jsp" %>
+
+<!-- 
+	NOTE: After we add, update, or delete an Assignment successfully, 
+	we are redirected to this page
+ -->
+ <liferay-ui:error key="serviceErrorDetails">
+     <liferay-ui:message 
+     	arguments='<%= SessionErrors.get(liferayPortletRequest, "serviceErrorDetails") %>' 
+     	key="error.assignment-service-error" />
+ </liferay-ui:error>
+ <liferay-ui:success key="assignmentAdded" message="assignment-added-successfully" />
+ <liferay-ui:success key="assignmentUpdated" message="assignment-updated-successfully" />
+ <liferay-ui:success key="assignmentDeleted" message="assignment-deleted-successfully" />
+
 
 <div class="container-fluid-1280">
 	<h1><liferay-ui:message key="assignments" /></h1>

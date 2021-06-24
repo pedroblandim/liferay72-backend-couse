@@ -12,11 +12,13 @@
 <%@taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
+
 <%@ page import="java.util.Date"%>
 <%@ page import="javax.portlet.WindowState"%>
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil"%>
 <%@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState"%>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil"%>
+<%@ page import="com.liferay.portal.kernel.servlet.SessionErrors"%>
 <%@ page import="com.liferay.training.gradebook.model.Assignment"%>
 <%@ page import="com.liferay.training.gradebook.web.constants.MVCCommandNames"%>
 
