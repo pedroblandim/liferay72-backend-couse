@@ -11,6 +11,7 @@
 <%@taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
 <%@taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
+<%@ taglib prefix="liferay-security" uri="http://liferay.com/tld/security" %>.
 
 
 <%@ page import="java.util.Date"%>

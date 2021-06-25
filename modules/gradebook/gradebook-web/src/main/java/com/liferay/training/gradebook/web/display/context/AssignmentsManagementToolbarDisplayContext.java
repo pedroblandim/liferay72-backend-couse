@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.training.gradebook.web.constants.GradebookPortletKeys;
 import com.liferay.training.gradebook.web.constants.MVCCommandNames;
+import com.liferay.training.gradebook.web.internal.security.permission.resource.AssignmentTopLevelPermission;
 
 import java.util.List;
 
@@ -51,24 +52,33 @@ public class AssignmentsManagementToolbarDisplayContext
 	 * @return creation menu
 	 */
 	@Override
-	public CreationMenu getCreationMenu() {
-		
-		// Create the menu
-		
-		return new CreationMenu() {
-			{
-				addDropdownItem(
-					dropdownItem -> {
-						dropdownItem.setHref(
-							liferayPortletResponse.createRenderURL(),
-							"mvcRenderCommandName", MVCCommandNames.EDIT_ASSIGNMENT,
-							"redirect", currentURLObj.toString());
-						dropdownItem.setLabel(
-							LanguageUtil.get(request, "add-assignment"));
-				});
-			}
-		};
-	}
+	 public CreationMenu getCreationMenu() {
+
+	     // Check if user has permissions to add assignments.
+
+	     if (!AssignmentTopLevelPermission.contains(
+	             _themeDisplay.getPermissionChecker(),
+	             _themeDisplay.getScopeGroupId(), "ADD_ENTRY")) {
+
+	         return null;
+	     }
+
+	     // Create the menu.
+
+	     return new CreationMenu() {
+	         {
+	             addDropdownItem(
+	                 dropdownItem -> {
+	                     dropdownItem.setHref(
+	                         liferayPortletResponse.createRenderURL(),
+	                         "mvcRenderCommandName", MVCCommandNames.EDIT_ASSIGNMENT,
+	                         "redirect", currentURLObj.toString());
+	                     dropdownItem.setLabel(
+	                         LanguageUtil.get(request, "add-assignment"));
+	                 });
+	         }
+	     };        
+	 }
 	
 	@Override
 	public String getClearResultsURL() {
