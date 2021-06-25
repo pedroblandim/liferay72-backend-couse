@@ -131,12 +131,12 @@ public class AssignmentServiceSoap {
 	}
 
 	public static com.liferay.training.gradebook.model.AssignmentSoap[]
-			getAssignmentByGroupId(long groupId)
+			getAssignmentsByGroupId(long groupId)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.training.gradebook.model.Assignment>
-				returnValue = AssignmentServiceUtil.getAssignmentByGroupId(
+				returnValue = AssignmentServiceUtil.getAssignmentsByGroupId(
 					groupId);
 
 			return com.liferay.training.gradebook.model.AssignmentSoap.
@@ -150,7 +150,7 @@ public class AssignmentServiceSoap {
 	}
 
 	public static com.liferay.training.gradebook.model.AssignmentSoap[]
-			getAssignmentByKeywords(
+			getAssignmentsByKeywords(
 				long groupId, String keywords, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
 					<com.liferay.training.gradebook.model.Assignment>
@@ -159,7 +159,7 @@ public class AssignmentServiceSoap {
 
 		try {
 			java.util.List<com.liferay.training.gradebook.model.Assignment>
-				returnValue = AssignmentServiceUtil.getAssignmentByKeywords(
+				returnValue = AssignmentServiceUtil.getAssignmentsByKeywords(
 					groupId, keywords, start, end, orderByComparator);
 
 			return com.liferay.training.gradebook.model.AssignmentSoap.
@@ -172,13 +172,13 @@ public class AssignmentServiceSoap {
 		}
 	}
 
-	public static long getAssignmentCountByKeywords(
+	public static long getAssignmentsCountByKeywords(
 			long groupId, String keywords)
 		throws RemoteException {
 
 		try {
 			long returnValue =
-				AssignmentServiceUtil.getAssignmentCountByKeywords(
+				AssignmentServiceUtil.getAssignmentsCountByKeywords(
 					groupId, keywords);
 
 			return returnValue;

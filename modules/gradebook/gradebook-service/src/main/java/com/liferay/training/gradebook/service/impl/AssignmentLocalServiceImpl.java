@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -57,38 +58,59 @@ public class AssignmentLocalServiceImpl extends AssignmentLocalServiceBaseImpl {
 	
 	public Assignment addAssignment(
 			long groupId, Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
-			Date dueDate, ServiceContext serviceContext) 
+			Date dueDate, ServiceContext serviceContext)
 			throws PortalException {
-		
-		_assignmentValidator.validate(titleMap, descriptionMap, dueDate);
-		
-		// Get group and user.
-		
-		Group group = groupLocalService.getGroup(groupId);
-		long userId = serviceContext.getUserId();
-		User user = userLocalService.getUser(userId);
-		
-		// Generate primary key for the assignment.
-		long assignmentId = 
-				counterLocalService.increment(Assignment.class.getName());
-		
-		// Create assignment. This doesn't yet persist the entity.
-		Assignment assignment = createAssignment(assignmentId);
-		
-		// Populate fields.
-		assignment.setCompanyId(group.getCompanyId());
-		assignment.setCreateDate(serviceContext.getCreateDate(new Date()));
-		assignment.setDueDate(dueDate);
-		assignment.setDescriptionMap(descriptionMap);
-		assignment.setGroupId(groupId);
-		assignment.setModifiedDate(serviceContext.getModifiedDate(new Date()));
-		assignment.setTitleMap(titleMap);
-		assignment.setUserId(userId);
-		assignment.setUserName(user.getScreenName());
-		
-		// Persist assignment to database.
-		return super.addAssignment(assignment);
-	}
+
+		    // Validate assignment parameters.
+
+		    _assignmentValidator.validate(titleMap, descriptionMap, dueDate);
+
+		     // Get group and user.
+
+		    Group group = groupLocalService.getGroup(groupId);
+
+		    long userId = serviceContext.getUserId();
+
+		    User user = userLocalService.getUser(userId);
+
+		    // Generate primary key for the assignment.
+
+		    long assignmentId =
+		        counterLocalService.increment(Assignment.class.getName());
+
+		    // Create assigment. This doesn't yet persist the entity.
+
+		    Assignment assignment = createAssignment(assignmentId);
+
+		    // Populate fields.
+
+			assignment.setCompanyId(group.getCompanyId());
+			assignment.setCreateDate(serviceContext.getCreateDate(new Date()));
+			assignment.setDueDate(dueDate);
+			assignment.setDescriptionMap(descriptionMap);
+			assignment.setGroupId(groupId);
+			assignment.setModifiedDate(serviceContext.getModifiedDate(new Date()));
+			assignment.setTitleMap(titleMap);
+			assignment.setUserId(userId);
+			assignment.setUserName(user.getScreenName());
+
+		    // Persist assignment to database.
+
+			assignment = super.addAssignment(assignment);
+
+			// Add permission resources.
+
+			boolean portletActions = false;
+			boolean addGroupPermissions = true;
+			boolean addGuestPermissions = true;
+
+			resourceLocalService.addResources(
+			    group.getCompanyId(), groupId, userId, Assignment.class.getName(),
+			    assignment.getAssignmentId(), portletActions, addGroupPermissions,
+			    addGuestPermissions);
+
+		    return assignment;
+	 }
 	
 	public Assignment updateAssignment(
 			long assignmentId, Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
@@ -111,23 +133,36 @@ public class AssignmentLocalServiceImpl extends AssignmentLocalServiceBaseImpl {
 		return assignment;
 	}
 	
-	public List<Assignment> getAssignmentByGroupId(long groupId) {
+	 public Assignment deleteAssignment(Assignment assignment)
+		     throws PortalException {
+
+		     // Delete permission resources.
+
+		     resourceLocalService.deleteResource(
+		         assignment, ResourceConstants.SCOPE_INDIVIDUAL);
+
+		     // Delete the Assignment
+
+		     return super.deleteAssignment(assignment);
+		 }
+	
+	public List<Assignment> getAssignmentsByGroupId(long groupId) {
 		return assignmentPersistence.findByGroupId(groupId);
 	}
 	
-	public List<Assignment> getAssignmentByGroupId(
+	public List<Assignment> getAssignmentsByGroupId(
 			long groupId, int start, int end) {
 		return assignmentPersistence.findByGroupId(groupId, start, end);
 	}
 	
-	public List<Assignment> getAssignmentByGroupId(
+	public List<Assignment> getAssignmentsByGroupId(
 			long groupId, int start, int end,
 			OrderByComparator<Assignment> orderByComparator) {
 		return assignmentPersistence.findByGroupId(
 				groupId, start, end, orderByComparator);
 	}
 	
-	public List<Assignment> getAssignmentByKeywords(
+	public List<Assignment> getAssignmentsByKeywords(
 			long groupId, String keywords, int start, int end,
 			OrderByComparator<Assignment> orderByComparator) {
 		
@@ -136,7 +171,7 @@ public class AssignmentLocalServiceImpl extends AssignmentLocalServiceBaseImpl {
 				orderByComparator);
 	}
 	
-	public long getAssignmentCountByKeywords(long groupId, String keywords) {
+	public long getAssignmentsCountByKeywords(long groupId, String keywords) {
 		return assignmentLocalService.dynamicQueryCount(
 				getKeywordsSearchDynamicQuery(groupId, keywords));
 	}

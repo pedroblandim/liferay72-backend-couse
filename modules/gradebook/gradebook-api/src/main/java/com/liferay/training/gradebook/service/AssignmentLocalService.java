@@ -94,9 +94,11 @@ public interface AssignmentLocalService
 	 *
 	 * @param assignment the assignment
 	 * @return the assignment that was removed
+	 * @throws PortalException
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public Assignment deleteAssignment(Assignment assignment);
+	public Assignment deleteAssignment(Assignment assignment)
+		throws PortalException;
 
 	/**
 	 * Deletes the assignment with the primary key from the database. Also notifies the appropriate model listeners.
@@ -198,26 +200,6 @@ public interface AssignmentLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Assignment getAssignment(long assignmentId) throws PortalException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Assignment> getAssignmentByGroupId(long groupId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Assignment> getAssignmentByGroupId(
-		long groupId, int start, int end);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Assignment> getAssignmentByGroupId(
-		long groupId, int start, int end,
-		OrderByComparator<Assignment> orderByComparator);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Assignment> getAssignmentByKeywords(
-		long groupId, String keywords, int start, int end,
-		OrderByComparator<Assignment> orderByComparator);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long getAssignmentCountByKeywords(long groupId, String keywords);
-
 	/**
 	 * Returns a range of all the assignments.
 	 *
@@ -232,6 +214,23 @@ public interface AssignmentLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Assignment> getAssignments(int start, int end);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Assignment> getAssignmentsByGroupId(long groupId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Assignment> getAssignmentsByGroupId(
+		long groupId, int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Assignment> getAssignmentsByGroupId(
+		long groupId, int start, int end,
+		OrderByComparator<Assignment> orderByComparator);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Assignment> getAssignmentsByKeywords(
+		long groupId, String keywords, int start, int end,
+		OrderByComparator<Assignment> orderByComparator);
+
 	/**
 	 * Returns the number of assignments.
 	 *
@@ -239,6 +238,9 @@ public interface AssignmentLocalService
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getAssignmentsCount();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public long getAssignmentsCountByKeywords(long groupId, String keywords);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();

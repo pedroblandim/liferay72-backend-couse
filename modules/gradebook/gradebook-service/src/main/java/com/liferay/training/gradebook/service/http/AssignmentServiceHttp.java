@@ -178,12 +178,12 @@ public class AssignmentServiceHttp {
 
 	public static java.util.List
 		<com.liferay.training.gradebook.model.Assignment>
-			getAssignmentByGroupId(HttpPrincipal httpPrincipal, long groupId) {
+			getAssignmentsByGroupId(HttpPrincipal httpPrincipal, long groupId) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
-				AssignmentServiceUtil.class, "getAssignmentByGroupId",
-				_getAssignmentByGroupIdParameterTypes3);
+				AssignmentServiceUtil.class, "getAssignmentsByGroupId",
+				_getAssignmentsByGroupIdParameterTypes3);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey, groupId);
 
@@ -211,7 +211,7 @@ public class AssignmentServiceHttp {
 
 	public static java.util.List
 		<com.liferay.training.gradebook.model.Assignment>
-			getAssignmentByKeywords(
+			getAssignmentsByKeywords(
 				HttpPrincipal httpPrincipal, long groupId, String keywords,
 				int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
@@ -220,8 +220,8 @@ public class AssignmentServiceHttp {
 
 		try {
 			MethodKey methodKey = new MethodKey(
-				AssignmentServiceUtil.class, "getAssignmentByKeywords",
-				_getAssignmentByKeywordsParameterTypes4);
+				AssignmentServiceUtil.class, "getAssignmentsByKeywords",
+				_getAssignmentsByKeywordsParameterTypes4);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, groupId, keywords, start, end, orderByComparator);
@@ -248,13 +248,13 @@ public class AssignmentServiceHttp {
 		}
 	}
 
-	public static long getAssignmentCountByKeywords(
+	public static long getAssignmentsCountByKeywords(
 		HttpPrincipal httpPrincipal, long groupId, String keywords) {
 
 		try {
 			MethodKey methodKey = new MethodKey(
-				AssignmentServiceUtil.class, "getAssignmentCountByKeywords",
-				_getAssignmentCountByKeywordsParameterTypes5);
+				AssignmentServiceUtil.class, "getAssignmentsCountByKeywords",
+				_getAssignmentsCountByKeywordsParameterTypes5);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, groupId, keywords);
@@ -339,15 +339,15 @@ public class AssignmentServiceHttp {
 		new Class[] {long.class};
 	private static final Class<?>[] _getAssignmentParameterTypes2 =
 		new Class[] {long.class};
-	private static final Class<?>[] _getAssignmentByGroupIdParameterTypes3 =
+	private static final Class<?>[] _getAssignmentsByGroupIdParameterTypes3 =
 		new Class[] {long.class};
-	private static final Class<?>[] _getAssignmentByKeywordsParameterTypes4 =
+	private static final Class<?>[] _getAssignmentsByKeywordsParameterTypes4 =
 		new Class[] {
 			long.class, String.class, int.class, int.class,
 			com.liferay.portal.kernel.util.OrderByComparator.class
 		};
 	private static final Class<?>[]
-		_getAssignmentCountByKeywordsParameterTypes5 = new Class[] {
+		_getAssignmentsCountByKeywordsParameterTypes5 = new Class[] {
 			long.class, String.class
 		};
 	private static final Class<?>[] _updateAssignmentParameterTypes6 =

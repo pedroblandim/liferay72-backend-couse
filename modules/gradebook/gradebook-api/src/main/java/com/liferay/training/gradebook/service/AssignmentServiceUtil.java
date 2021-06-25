@@ -64,27 +64,27 @@ public class AssignmentServiceUtil {
 
 	public static java.util.List
 		<com.liferay.training.gradebook.model.Assignment>
-			getAssignmentByGroupId(long groupId) {
+			getAssignmentsByGroupId(long groupId) {
 
-		return getService().getAssignmentByGroupId(groupId);
+		return getService().getAssignmentsByGroupId(groupId);
 	}
 
 	public static java.util.List
 		<com.liferay.training.gradebook.model.Assignment>
-			getAssignmentByKeywords(
+			getAssignmentsByKeywords(
 				long groupId, String keywords, int start, int end,
 				com.liferay.portal.kernel.util.OrderByComparator
 					<com.liferay.training.gradebook.model.Assignment>
 						orderByComparator) {
 
-		return getService().getAssignmentByKeywords(
+		return getService().getAssignmentsByKeywords(
 			groupId, keywords, start, end, orderByComparator);
 	}
 
-	public static long getAssignmentCountByKeywords(
+	public static long getAssignmentsCountByKeywords(
 		long groupId, String keywords) {
 
-		return getService().getAssignmentCountByKeywords(groupId, keywords);
+		return getService().getAssignmentsCountByKeywords(groupId, keywords);
 	}
 
 	/**

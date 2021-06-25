@@ -60,26 +60,26 @@ public class AssignmentServiceWrapper
 
 	@Override
 	public java.util.List<com.liferay.training.gradebook.model.Assignment>
-		getAssignmentByGroupId(long groupId) {
+		getAssignmentsByGroupId(long groupId) {
 
-		return _assignmentService.getAssignmentByGroupId(groupId);
+		return _assignmentService.getAssignmentsByGroupId(groupId);
 	}
 
 	@Override
 	public java.util.List<com.liferay.training.gradebook.model.Assignment>
-		getAssignmentByKeywords(
+		getAssignmentsByKeywords(
 			long groupId, String keywords, int start, int end,
 			com.liferay.portal.kernel.util.OrderByComparator
 				<com.liferay.training.gradebook.model.Assignment>
 					orderByComparator) {
 
-		return _assignmentService.getAssignmentByKeywords(
+		return _assignmentService.getAssignmentsByKeywords(
 			groupId, keywords, start, end, orderByComparator);
 	}
 
 	@Override
-	public long getAssignmentCountByKeywords(long groupId, String keywords) {
-		return _assignmentService.getAssignmentCountByKeywords(
+	public long getAssignmentsCountByKeywords(long groupId, String keywords) {
+		return _assignmentService.getAssignmentsCountByKeywords(
 			groupId, keywords);
 	}
 

@@ -93,7 +93,7 @@ public class ViewAssignmentsMVCRenderCommand implements MVCRenderCommand {
 		// Call the service to get the list of assignments
 		
 		List<Assignment> assignments = 
-				_assignmentService.getAssignmentByKeywords(
+				_assignmentService.getAssignmentsByKeywords(
 						themeDisplay.getScopeGroupId(), keywords, start, end, 
 						comparator);
 		
@@ -101,7 +101,7 @@ public class ViewAssignmentsMVCRenderCommand implements MVCRenderCommand {
 		
 		renderRequest.setAttribute("assignments", assignments);
 		renderRequest.setAttribute(
-				"assignmentCount", _assignmentService.getAssignmentCountByKeywords(
+				"assignmentCount", _assignmentService.getAssignmentsCountByKeywords(
 					themeDisplay.getScopeGroupId(), keywords));
 		
 	}

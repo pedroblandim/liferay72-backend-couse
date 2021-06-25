@@ -78,10 +78,12 @@ public class AssignmentLocalServiceUtil {
 	 *
 	 * @param assignment the assignment
 	 * @return the assignment that was removed
+	 * @throws PortalException
 	 */
 	public static com.liferay.training.gradebook.model.Assignment
-		deleteAssignment(
-			com.liferay.training.gradebook.model.Assignment assignment) {
+			deleteAssignment(
+				com.liferay.training.gradebook.model.Assignment assignment)
+		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().deleteAssignment(assignment);
 	}
@@ -222,50 +224,6 @@ public class AssignmentLocalServiceUtil {
 		return getService().getAssignment(assignmentId);
 	}
 
-	public static java.util.List
-		<com.liferay.training.gradebook.model.Assignment>
-			getAssignmentByGroupId(long groupId) {
-
-		return getService().getAssignmentByGroupId(groupId);
-	}
-
-	public static java.util.List
-		<com.liferay.training.gradebook.model.Assignment>
-			getAssignmentByGroupId(long groupId, int start, int end) {
-
-		return getService().getAssignmentByGroupId(groupId, start, end);
-	}
-
-	public static java.util.List
-		<com.liferay.training.gradebook.model.Assignment>
-			getAssignmentByGroupId(
-				long groupId, int start, int end,
-				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.training.gradebook.model.Assignment>
-						orderByComparator) {
-
-		return getService().getAssignmentByGroupId(
-			groupId, start, end, orderByComparator);
-	}
-
-	public static java.util.List
-		<com.liferay.training.gradebook.model.Assignment>
-			getAssignmentByKeywords(
-				long groupId, String keywords, int start, int end,
-				com.liferay.portal.kernel.util.OrderByComparator
-					<com.liferay.training.gradebook.model.Assignment>
-						orderByComparator) {
-
-		return getService().getAssignmentByKeywords(
-			groupId, keywords, start, end, orderByComparator);
-	}
-
-	public static long getAssignmentCountByKeywords(
-		long groupId, String keywords) {
-
-		return getService().getAssignmentCountByKeywords(groupId, keywords);
-	}
-
 	/**
 	 * Returns a range of all the assignments.
 	 *
@@ -284,6 +242,44 @@ public class AssignmentLocalServiceUtil {
 		return getService().getAssignments(start, end);
 	}
 
+	public static java.util.List
+		<com.liferay.training.gradebook.model.Assignment>
+			getAssignmentsByGroupId(long groupId) {
+
+		return getService().getAssignmentsByGroupId(groupId);
+	}
+
+	public static java.util.List
+		<com.liferay.training.gradebook.model.Assignment>
+			getAssignmentsByGroupId(long groupId, int start, int end) {
+
+		return getService().getAssignmentsByGroupId(groupId, start, end);
+	}
+
+	public static java.util.List
+		<com.liferay.training.gradebook.model.Assignment>
+			getAssignmentsByGroupId(
+				long groupId, int start, int end,
+				com.liferay.portal.kernel.util.OrderByComparator
+					<com.liferay.training.gradebook.model.Assignment>
+						orderByComparator) {
+
+		return getService().getAssignmentsByGroupId(
+			groupId, start, end, orderByComparator);
+	}
+
+	public static java.util.List
+		<com.liferay.training.gradebook.model.Assignment>
+			getAssignmentsByKeywords(
+				long groupId, String keywords, int start, int end,
+				com.liferay.portal.kernel.util.OrderByComparator
+					<com.liferay.training.gradebook.model.Assignment>
+						orderByComparator) {
+
+		return getService().getAssignmentsByKeywords(
+			groupId, keywords, start, end, orderByComparator);
+	}
+
 	/**
 	 * Returns the number of assignments.
 	 *
@@ -291,6 +287,12 @@ public class AssignmentLocalServiceUtil {
 	 */
 	public static int getAssignmentsCount() {
 		return getService().getAssignmentsCount();
+	}
+
+	public static long getAssignmentsCountByKeywords(
+		long groupId, String keywords) {
+
+		return getService().getAssignmentsCountByKeywords(groupId, keywords);
 	}
 
 	public static

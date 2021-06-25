@@ -69,15 +69,15 @@ public interface AssignmentService extends BaseService {
 	public Assignment getAssignment(long assignmentId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Assignment> getAssignmentByGroupId(long groupId);
+	public List<Assignment> getAssignmentsByGroupId(long groupId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Assignment> getAssignmentByKeywords(
+	public List<Assignment> getAssignmentsByKeywords(
 		long groupId, String keywords, int start, int end,
 		OrderByComparator<Assignment> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long getAssignmentCountByKeywords(long groupId, String keywords);
+	public long getAssignmentsCountByKeywords(long groupId, String keywords);
 
 	/**
 	 * Returns the OSGi service identifier.
