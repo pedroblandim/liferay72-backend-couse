@@ -23,6 +23,11 @@
 <%@ page import="com.liferay.training.gradebook.model.Assignment"%>
 <%@ page import="com.liferay.training.gradebook.web.constants.MVCCommandNames"%>
 
+<%-- Asset Framework integration --%>
+<%@ page import="com.liferay.asset.kernel.model.AssetRenderer"%>
+<%@ page import="com.liferay.portal.kernel.util.WebKeys"%>
+
+
 <liferay-theme:defineObjects />
 
 <liferay-frontend:defineObjects />
