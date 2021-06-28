@@ -7,6 +7,7 @@ import com.liferay.portal.kernel.events.LifecycleAction;
 import com.liferay.portal.kernel.events.LifecycleEvent;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
+import com.liferay.portal.kernel.util.Validator;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -41,7 +42,8 @@ public class UserExpandoStartupAction implements LifecycleAction {
 
 			ExpandoBridge expandoBridge = ExpandoBridgeFactoryUtil
 					.getExpandoBridge(companyId, User.class.getName());
-			expandoBridge.addAttribute("linkedin_profile_id", secure);
+			if (Validator.isNull(expandoBridge.getAttribute("linkedin_profile_id")))
+				expandoBridge.addAttribute("linkedin_profile_id", secure);
 
 		}
 		catch (Exception e) {
